@@ -3,21 +3,23 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 st.title('Slack Message Cohort 6')
-st.text('Channel Member Analysis on each conversastion')
+st.text('Channel Member Analysis on each conversation')
+
 upload_file = st.file_uploader("Upload your file / JSON-File")
 
 if upload_file:
-    df = pd.read_json(upload_file)
-    st.header('Data Header')
+    df = pd.read_json(upload_file)
+    st.header('Data Header')
+    st.write(df.head())
 
-    st.write(df.head())
-    st.header('Data Analytics')
-    st.write(df.describe())
+    st.header('Data Analytics')
+    st.write(df.describe())
 
-    df = df[:3]
-    fig, ax = plt.subplots()
-    ax.plot(df['user'], df['text'])
-    ax.set_xlabel('user')
-    ax.set_ylabel('text')
+    df = df[:3]
+    fig, ax = plt.subplots()
+    ax.bar(df['user'], df['text'])
+    ax.set_xlabel('user')
+    ax.set_ylabel('text')
 
-    st.pyplot(fig)
+    st.pyplot(fig)
+    
